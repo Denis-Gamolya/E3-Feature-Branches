@@ -70,25 +70,28 @@ function buildFace() {
   mouth.setAttribute("stroke-linecap", "round");
   face.append(mouth);
 
+  const hair = document.createElementNS("http://www.w3.org/2000/svg", "image");
+  hair.setAttribute("href", hairUrl);
+  hair.setAttribute("x", "20");
+  hair.setAttribute("y", "0");
+  hair.setAttribute("width", "160");
+  hair.setAttribute("height", "70");
+  face.append(hair);
+
+  const glasses = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "image",
+  );
+  glasses.setAttribute("href", glassesUrl);
+  glasses.setAttribute("x", "50");
+  glasses.setAttribute("y", "60");
+  glasses.setAttribute("width", "110");
+  glasses.setAttribute("height", "35");
+  face.append(glasses);
+
   return face;
 }
 const face = buildFace();
-
-const hair = document.createElementNS("http://www.w3.org/2000/svg", "image");
-hair.setAttribute("href", hairUrl);
-hair.setAttribute("x", "20");
-hair.setAttribute("y", "0");
-hair.setAttribute("width", "160");
-hair.setAttribute("height", "70");
-face.append(hair);
-
-const glasses = document.createElementNS("http://www.w3.org/2000/svg", "image");
-glasses.setAttribute("href", glassesUrl);
-glasses.setAttribute("x", "50");
-glasses.setAttribute("y", "60");
-glasses.setAttribute("width", "110");
-glasses.setAttribute("height", "35");
-face.append(glasses);
 
 portrait.append(face);
 spin.addEventListener("click", () => {
