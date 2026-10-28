@@ -20,3 +20,7 @@
 ## Selection Criterion
 
 - Version that reads clearly at a small size.
+
+## Decision
+
+    - I chose branch B with the hair and glasses. All of the versions read clearly at a small size but this one was most distinct. Branch A and B remain separate and unchanged.
