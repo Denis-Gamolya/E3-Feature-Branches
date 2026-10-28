@@ -5,14 +5,35 @@ const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 face.setAttribute("viewBox", "0 0 200 200");
 face.setAttribute("role", "img");
-face.setAttribute("aria-label", "A neutral face");
+face.setAttribute("aria-label", "A orange to purple face with an uneven smile");
+
+const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+const gradient = document.createElementNS(
+  "http://www.w3.org/2000/svg",
+  "linearGradient",
+);
+gradient.setAttribute("id", "headGradient");
+gradient.setAttribute("x2", "0%");
+gradient.setAttribute("y2", "100%");
+
+const orange = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+orange.setAttribute("offset", "20%");
+orange.setAttribute("stop-color", "#f5a442");
+
+const purple = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+purple.setAttribute("offset", "100%");
+purple.setAttribute("stop-color", "#8e44ad");
+
+gradient.append(orange, purple);
+defs.append(gradient);
+face.append(defs);
 
 const head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
 head.setAttribute("cx", "100");
 head.setAttribute("cy", "100");
 head.setAttribute("rx", "78");
 head.setAttribute("ry", "86");
-head.setAttribute("fill", "#f3cf87");
+head.setAttribute("fill", "url(#headGradient)");
 head.setAttribute("stroke", "#302c29");
 head.setAttribute("stroke-width", "4");
 face.append(head);
@@ -49,11 +70,9 @@ nose.setAttribute("stroke-width", "4");
 nose.setAttribute("stroke-linecap", "round");
 face.append(nose);
 
-const mouth = document.createElementNS("http://www.w3.org/2000/svg", "line");
-mouth.setAttribute("x1", "75");
-mouth.setAttribute("y1", "137");
-mouth.setAttribute("x2", "125");
-mouth.setAttribute("y2", "137");
+const mouth = document.createElementNS("http://www.w3.org/2000/svg", "path");
+mouth.setAttribute("d", "M 45 130 Q 140 160 155 130");
+mouth.setAttribute("fill", "none");
 mouth.setAttribute("stroke", "#302c29");
 mouth.setAttribute("stroke-width", "4");
 mouth.setAttribute("stroke-linecap", "round");
