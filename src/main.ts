@@ -1,11 +1,19 @@
 const portrait = document.querySelector<HTMLDivElement>("#portrait")!;
 const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 
+// @deno-types="./asset-url.d.ts"
+import hairUrl from "../assets/hair.png?no-inline";
+// I made the asset using Microsoft Paint.
+
+// @deno-types="./asset-url.d.ts"
+import glassesUrl from "../assets/glasses.png?no-inline";
+// I made the asset using Microsoft Paint.
+
 function buildFace() {
   const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   face.setAttribute("viewBox", "0 0 200 200");
   face.setAttribute("role", "img");
-  face.setAttribute("aria-label", "A neutral face");
+  face.setAttribute("aria-label", "A face with red hair and glasses");
 
   const head = document.createElementNS(
     "http://www.w3.org/2000/svg",
@@ -65,6 +73,22 @@ function buildFace() {
   return face;
 }
 const face = buildFace();
+
+const hair = document.createElementNS("http://www.w3.org/2000/svg", "image");
+hair.setAttribute("href", hairUrl);
+hair.setAttribute("x", "20");
+hair.setAttribute("y", "0");
+hair.setAttribute("width", "160");
+hair.setAttribute("height", "70");
+face.append(hair);
+
+const glasses = document.createElementNS("http://www.w3.org/2000/svg", "image");
+glasses.setAttribute("href", glassesUrl);
+glasses.setAttribute("x", "50");
+glasses.setAttribute("y", "60");
+glasses.setAttribute("width", "110");
+glasses.setAttribute("height", "35");
+face.append(glasses);
 
 portrait.append(face);
 spin.addEventListener("click", () => {
