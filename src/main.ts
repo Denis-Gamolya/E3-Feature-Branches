@@ -3,9 +3,50 @@ const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 
 // The prototype grew inline. Keep it this way until the refactoring checkpoint.
 const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-face.setAttribute("viewBox", "0 0 200 200");
+face.setAttribute("viewBox", "-20 -20 240 240");
 face.setAttribute("role", "img");
-face.setAttribute("aria-label", "A neutral face");
+face.setAttribute(
+  "aria-label",
+  "A neutral face with a spiky halo and scattered triangles",
+);
+
+const halo = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+halo.setAttribute("cx", "100");
+halo.setAttribute("cy", "100");
+halo.setAttribute("r", "100");
+halo.setAttribute("fill", "none");
+halo.setAttribute("stroke", "#ddae51");
+face.append(halo);
+
+for (let i = 0; i < 120; i++) {
+  const spike = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "polygon",
+  );
+  spike.setAttribute("points", "-2,-100 0,-115 2,-100");
+  spike.setAttribute("fill", "gold");
+  spike.setAttribute("transform", `translate(100 100) rotate(${i * 3})`);
+  face.append(spike);
+}
+
+for (let i = 0; i < 120; i++) {
+  const angle = (i / 120) * Math.PI * 2;
+  const radius = 85 + Math.random() * 25;
+  const x = 100 + Math.cos(angle) * radius;
+  const y = 100 + Math.sin(angle) * radius;
+
+  const triangle = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "polygon",
+  );
+  triangle.setAttribute("points", "0,-5 -4,4 4,4");
+  triangle.setAttribute("fill", "orange");
+  triangle.setAttribute(
+    "transform",
+    `translate(${x} ${y}) rotate(${Math.random() * 360})`,
+  );
+  face.append(triangle);
+}
 
 const head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
 head.setAttribute("cx", "100");
